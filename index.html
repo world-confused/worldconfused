@@ -65,13 +65,30 @@
       </div>
     </section>
   </div>
+<!-- Placeholder container -->
+<div id="eoc-form-container" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+  <div id="eoc-form"></div>
+</div>
 
-  <!-- Fixed bottom-center email button -->
-  <div id="fixed-email-button" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
-    <div id="eoc-form"></div>
-  </div>
+<!-- Email signup form script -->
+<script async src="https://eocampaign1.com/form/c65469cc-47ca-11f0-a410-f5225dc75a57.js" data-form="c65469cc-47ca-11f0-a410-f5225dc75a57"></script>
 
-  <!-- Embedded Email Button Script -->
-  <script async src="https://eocampaign1.com/form/c65469cc-47ca-11f0-a410-f5225dc75a57.js" data-form="c65469cc-47ca-11f0-a410-f5225dc75a57"></script>
+<!-- Force position of injected form -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const observer = new MutationObserver(() => {
+      const formWrapper = document.querySelector('#eoc-form-container > div');
+      if (formWrapper) {
+        formWrapper.style.position = 'static'; // reset any absolute/fixed the script adds
+        formWrapper.style.margin = '0 auto';   // center horizontally
+        formWrapper.style.display = 'inline-block';
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.getElementById('eoc-form-container'), { childList: true });
+  });
+</script>
+
 </body>
 </html>
